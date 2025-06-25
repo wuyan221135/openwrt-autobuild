@@ -6,17 +6,20 @@ BASE_PATH=$(cd $(dirname $0) && pwd)
 # echo "src-git custom_golang https://github.com/openwrt/packages.git^golang-1.21" >> feeds.conf.default
 # ./scripts/feeds update custom_golang
 
-# rm -rf feeds/packages/net/adguardhome
+rm -rf feeds/packages/net/adguardhome
 rm -rf feeds/packages/net/mosdns
-# rm -rf feeds/packages/net/msd_lite
+rm -rf feeds/packages/net/msd_lite
+rm -rf feeds/packages/net/open-app-filter
 # rm -rf feeds/packages/net/smartdns
 rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-argon-config
 # rm -rf feeds/luci/themes/luci-theme-netgear
 rm -rf feeds/luci/applications/luci-app-adguardhome
 rm -rf feeds/luci/applications/luci-app-mosdns
 # rm -rf feeds/luci/applications/luci-app-netdata
 # rm -rf feeds/luci/applications/luci-app-serverchan
 rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-homeproxy
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-ssr-plus
@@ -79,10 +82,15 @@ rm -rf feeds/packages/utils/v2dat
 # }
 
 install_small8() {
-    ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-mosdns \
-    luci-app-openclash luci-app-poweroff luci-theme-argon luci-app-argon-config\
-    luci-app-adguardhome luci-app-ssr-plus trojan-plus v2ray-geodata v2ray-plugin\
-    v2ray-core shadowsocks-rust xray-core v2dat
+    ./scripts/feeds install -p small8 -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
+        naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata v2ray-geoview v2ray-plugin \
+        tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
+        luci-app-passwall alist luci-app-alist smartdns luci-app-smartdns v2dat mosdns luci-app-mosdns \
+        adguardhome luci-app-adguardhome ddns-go luci-app-ddns-go taskd luci-lib-xterm luci-lib-taskd \
+        luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
+        luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash luci-app-homeproxy \
+        luci-app-amlogic nikki luci-app-nikki tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf \
+        easytier luci-app-easytier msd_lite luci-app-msd_lite luci-app-argon-config cups luci-app-cupsd
 }
 
 # fix_miniupmpd() {
